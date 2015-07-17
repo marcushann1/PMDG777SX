@@ -1,0 +1,14 @@
+﻿Build started 17/07/2015 20:53:58.
+     1>Project "C:\Users\marcushann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\test_networking_server\test_networking_server.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"stdafx.h" /Fp"Debug\test_networking_server.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt test_networking_server.cpp
+         test_networking_server.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\marcushann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\test_networking_server.exe" /INCREMENTAL /NOLOGO wsock32.lib Ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\marcushann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\test_networking_server.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\marcushann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\test_networking_server.lib" /MACHINE:X86 Debug\stdafx.obj
+         Debug\test_networking_server.obj
+         test_networking_server.vcxproj -> C:\Users\marcushann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\test_networking_server.exe
+     1>Done Building Project "C:\Users\marcushann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\test_networking_server\test_networking_server.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.37

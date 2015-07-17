@@ -1,0 +1,9 @@
+*.tlog
+ConsoleApplication1/Debug/ConsoleApplication1.log
+*.obj
+ConsoleApplication1/Debug/ConsoleApplication1.pch
+*.exe
+Debug/ConsoleApplication1.ilk
+*.pdb
+Debug/test_networking_client.ilk
+*.ilk

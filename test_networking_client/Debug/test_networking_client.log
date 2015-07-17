@@ -1,0 +1,36 @@
+﻿Build started 17/07/2015 20:54:34.
+     1>Project "C:\Users\marcushann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\test_networking_client\test_networking_client.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"stdafx.h" /Fp"Debug\test_networking_client.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt test_networking_client.cpp
+         test_networking_client.cpp
+     1>c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(8): warning C4005: 'WINVER': macro redefinition
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(4): note: see previous definition of 'WINVER'
+     1>c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(9): warning C4005: '_WIN32_WINNT': macro redefinition
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(6): note: see previous definition of '_WIN32_WINNT'
+     1>c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(4): warning C4603: 'WINVER': macro is not defined or definition is different after precompiled header use
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(4): note: Add macro to precompiled header instead of defining here
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(12): note: use of precompiled header
+     1>c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(5): warning C4603: '_WIN32_WINDOWS': macro is not defined or definition is different after precompiled header use
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(5): note: Add macro to precompiled header instead of defining here
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(12): note: use of precompiled header
+     1>c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(6): warning C4603: '_WIN32_WINNT': macro is not defined or definition is different after precompiled header use
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(6): note: Add macro to precompiled header instead of defining here
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(12): note: use of precompiled header
+     1>c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(7): warning C4603: 'NTDDI_VERSION': macro is not defined or definition is different after precompiled header use
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(7): note: Add macro to precompiled header instead of defining here
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(12): note: use of precompiled header
+     1>c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(8): warning C4603: 'WINVER': macro is not defined or definition is different after precompiled header use
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(8): note: Add macro to precompiled header instead of defining here
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(12): note: use of precompiled header
+     1>c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(9): warning C4603: '_WIN32_WINNT': macro is not defined or definition is different after precompiled header use
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(9): note: Add macro to precompiled header instead of defining here
+         c:\users\marcushann\documents\visual studio 2015\projects\consoleapplication1\test_networking_client\test_networking_client.cpp(12): note: use of precompiled header
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\marcushann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\test_networking_client.exe" /INCREMENTAL /NOLOGO wsock32.lib Ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\marcushann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\test_networking_client.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\marcushann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\test_networking_client.lib" /MACHINE:X86 Debug\stdafx.obj
+         Debug\test_networking_client.obj
+         test_networking_client.vcxproj -> C:\Users\marcushann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\Debug\test_networking_client.exe
+     1>Done Building Project "C:\Users\marcushann\Documents\Visual Studio 2015\Projects\ConsoleApplication1\test_networking_client\test_networking_client.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.36
