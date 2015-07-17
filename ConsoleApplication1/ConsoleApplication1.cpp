@@ -12,13 +12,12 @@
 #define NTDDI_VERSION NTDDI_VISTA
 #define WINVER _WIN32_WINNT_VISTA
 #define _WIN32_WINNT _WIN32_WINNT_VISTA
-#define MYPORT "3490" // the port users will be connecting to
-#define BACKLOG 10 // how many pending connections queue will hold
+
 
 #include "stdafx.h"
 #include <windows.h>
 
-
+#define PORT "9034"
 
 
 int     quit = 0;
@@ -62,6 +61,18 @@ EnableDataBroadcast=1
 to enable the data sending from the 777X.
 */
 
+
+//get sockaddr, IPv4 or IPv6:
+void *get_in_addr(struct sockaddr *sa) {
+	if (sa->sa_family == AF_INET) {
+		//is IPv4
+		return &(((struct sockaddr_in*)sa)->sin_addr);
+	}
+	else {
+		//is IPv6
+		return &(((struct sockaddr_in6*)sa)->sin6_addr);
+	}
+}
 
 bool B777X_FuelPumpLAftLight = true;
 bool B777X_TaxiLightSwitch = false;
@@ -455,6 +466,63 @@ void testCommunication()
 			// receive and process the 777X data
 			SimConnect_CallDispatch(hSimConnect, MyDispatchProc, NULL);
 
+			//---------------------------
+			//networking code
+			//---------------------------
+
+			//setup the variables needed
+			fd_set master, read_fds;
+			int fdmax, listener, newfd;
+			struct sockaddr_storage remoteaddr;
+			socklen_t addrlen;
+
+			char buf[256]; //buffer for recieved data
+			int nbytes;
+
+			char remoteIP[INET6_ADDRSTRLEN];
+
+			int yes = 1;
+			int i, j, rv;
+
+			struct addrinfo hints, *ai, *p;
+
+			FD_ZERO(&master);
+			FD_ZERO(&read_fds);
+
+			//get a socket and bind to it
+
+			memset(&hints, 0, sizeof hints);
+			hints.ai_family = AF_UNSPEC;
+			hints.ai_socktype - SOCK_STREAM;
+			hints.ai_flags = AI_PASSIVE;
+
+			if ((rv = getaddrinfo(NULL, PORT, &hints, &ai)) != 0) {
+				//an error has occured
+				fprintf(stderr, "selectserver: %s\n", gai_strerror(rv));
+				exit(1);
+			}
+
+			//bind on first avaliable
+			//TODO: make this better
+			for (p = ai; p != NULL; p = p->ai_next) {
+				listener = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
+				if (listener < 0) {
+					continue;
+				}
+
+				//stop the address already in use error
+				setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int));
+
+				if (bind(listener, p->ai_addr, p->ai_addrlen) < 0) {
+					closesocket(listener);
+					continue;
+				}
+			}
+
+			//---------------------------
+			//end of networking code
+			//---------------------------
+
 			//listen for packets
 
 			//toggleLogoLightsSwitch();
@@ -462,7 +530,7 @@ void testCommunication()
 			toggleLandingLightLeftSwitch();
 			//toggleTaxiLightSwitch();
 
-			Sleep(1000);
+			Sleep(1);
 		}
 
 		hr = SimConnect_Close(hSimConnect);
@@ -485,31 +553,7 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 		exit(1);
 	}
 
-	struct sockaddr_storage their_addr;
-	socklen_t addr_size;
-	struct addrinfo hints, *res;
-	char* *buf;
-	int sockfd, new_fd;
-	int bytes_sent;
-	// !! don't forget your error checking for these calls !!
-		// first, load up address structs with getaddrinfo():
-		memset(&hints, 0, sizeof hints);
-	hints.ai_family = AF_UNSPEC; // use IPv4 or IPv6, whichever
-	hints.ai_socktype = SOCK_STREAM;
-	hints.ai_flags = AI_PASSIVE; // fill in my IP for me
-	getaddrinfo(NULL, "3490", &hints, &res);
-	// make a socket, bind it, and listen on it:
-	sockfd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
-	bind(sockfd, res->ai_addr, res->ai_addrlen);
-	listen(sockfd, 10);
-	// now accept an incoming connection:
-	printf("Waiting for new conenction on port 3490\n\n\n");
-	addr_size = sizeof their_addr;
-	new_fd = accept(sockfd, (struct sockaddr *)&their_addr, &addr_size);
-	// ready to communicate on socket descriptor new_fd!
-	printf("Recieved new connection on port 3490\n\n\n");
-	bytes_sent = recv(sockfd, *buf, 20, 0);
-	printf("%d", bytes_sent);
+
 
 
 
