@@ -13,8 +13,7 @@
 #define WINVER _WIN32_WINNT_VISTA
 #define _WIN32_WINNT _WIN32_WINNT_VISTA
 #define MYPORT "3490" // the port users will be connecting to
-#define BACKLOG 10 // how many pending connections queue will hold
-
+#define BACKLOG 10 // how many pending connections queue will hold
 
 #include "stdafx.h"
 #include <windows.h>
@@ -507,7 +506,12 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 	printf("Waiting for new conenction on port 3490\n\n\n");
 	addr_size = sizeof their_addr;
 	new_fd = accept(sockfd, (struct sockaddr *)&their_addr, &addr_size);
-	// ready to communicate on socket descriptor new_fd!	printf("Recieved new connection on port 3490\n\n\n");	bytes_sent = recv(sockfd, *buf, 20, 0);	printf("%d", bytes_sent);
+	// ready to communicate on socket descriptor new_fd!
+	printf("Recieved new connection on port 3490\n\n\n");
+	bytes_sent = recv(sockfd, *buf, 20, 0);
+	printf("%d", bytes_sent);
+
+
 
 	//---------------------
 	//run the main listening and sending code

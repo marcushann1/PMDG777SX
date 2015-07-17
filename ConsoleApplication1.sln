@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_networking_client", "t
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_networking_server", "test_networking_server\test_networking_server.vcxproj", "{574527AD-B429-46B9-9988-4AC01A33A262}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cppnetworkingtest2", "Cppnetworkingtest2\Cppnetworkingtest2.vcxproj", "{6004708D-0937-4242-9C9B-017765B2D97F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -27,6 +29,10 @@ Global
 		{574527AD-B429-46B9-9988-4AC01A33A262}.Debug|x86.Build.0 = Debug|Win32
 		{574527AD-B429-46B9-9988-4AC01A33A262}.Release|x86.ActiveCfg = Release|Win32
 		{574527AD-B429-46B9-9988-4AC01A33A262}.Release|x86.Build.0 = Release|Win32
+		{6004708D-0937-4242-9C9B-017765B2D97F}.Debug|x86.ActiveCfg = Debug|Win32
+		{6004708D-0937-4242-9C9B-017765B2D97F}.Debug|x86.Build.0 = Debug|Win32
+		{6004708D-0937-4242-9C9B-017765B2D97F}.Release|x86.ActiveCfg = Release|Win32
+		{6004708D-0937-4242-9C9B-017765B2D97F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
