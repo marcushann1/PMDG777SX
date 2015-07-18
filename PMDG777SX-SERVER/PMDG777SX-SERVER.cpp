@@ -85,6 +85,21 @@ void sendDataBool(char* name, bool value) {
 	printf("sent packet\n");
 }
 
+void sendDataChar(char* name, unsigned char value){
+	char result[100];   // array to hold the result.
+
+	strcpy_s(result, 100, name); // copy string one into the result.
+	strcat_s(result, 100, ": ");
+	strcat_s(result, 100, value); // append string two to the result.
+
+	if ((numbytes = sendto(sockfd, result, strlen(result), 0,
+		p->ai_addr, p->ai_addrlen)) == -1) {
+		perror("talker: sendto");
+		exit(1);
+	}
+	printf("sent packet\n");
+}
+
 // This function is called when 777X data changes
 void Process777XData(PMDG_777X_Data *pS)
 {
@@ -173,6 +188,7 @@ void Process777XData(PMDG_777X_Data *pS)
 			printf("ELECTRIC STANDBY POWER SWITCH #1: [BAT]\n");
 
 		//send packets
+		SendDataChar("B777X_ElecStandbyPowerSwitch", B777X_ElecStandbyPowerSwitch);
 	}
 
 	if (pS->ICE_WindowHeatBackUp_Sw_OFF[0] != B777X_WindowHeatBackupSwitch1)
