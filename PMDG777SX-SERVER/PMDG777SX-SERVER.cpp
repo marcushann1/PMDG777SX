@@ -184,6 +184,7 @@ void Process777XData(PMDG_777X_Data *pS)
 			printf("WINDOW HEAT BACKUP SWITCH #1: [OFF]\n");
 
 		//send packets
+		sendDataBool("ICE_WindowHeatBackUp_Sw_OFF1", B777X_WindowHeatBackupSwitch1);
 	}
 
 	if (pS->ICE_WindowHeatBackUp_Sw_OFF[1] != B777X_WindowHeatBackupSwitch2)
@@ -195,19 +196,7 @@ void Process777XData(PMDG_777X_Data *pS)
 			printf("WINDOW HEAT BACKUP SWITCH #2: [OFF]\n");
 
 		//send packets
-	}
-
-	// test the data access:
-	// get the state of an annunciator light and display it
-	if (pS->FUEL_annunLOWPRESS_Aft[0] != B777X_FuelPumpLAftLight)
-	{
-		B777X_FuelPumpLAftLight = pS->FUEL_annunLOWPRESS_Aft[0];
-		if (B777X_FuelPumpLAftLight)
-			printf("LOW PRESS LIGHT: [ON]\n");
-		else
-			printf("LOW PRESS LIGHT: [OFF]\n");
-
-		//send packets
+		sendDataBool("ICE_WindowHeatBackUp_Sw_OFF2", B777X_WindowHeatBackupSwitch2);
 	}
 
 	// get the state of switches and save it for later use
@@ -218,6 +207,9 @@ void Process777XData(PMDG_777X_Data *pS)
 			printf("TAXI LIGHTS: [ON]\n");
 		else
 			printf("TAXI LIGHTS: [OFF]\n");
+
+		//send packets
+		sendDataBool("LTS_Taxi_Sw_ON", B777X_TaxiLightSwitch);
 	}
 
 	if (pS->LTS_LandingLights_Sw_ON[1] != B777X_LandingLightLeftSwitch)
@@ -227,6 +219,9 @@ void Process777XData(PMDG_777X_Data *pS)
 			printf("LEFT LANDING LIGHTS: [ON]\n");
 		else
 			printf("LEFT LANDING LIGHTS: [OFF]\n");
+
+		//send packets
+		sendDataBool("LTS_LandingLights_Sw_ON1", B777X_LandingLightLeftSwitch);
 	}
 
 	if (pS->LTS_Logo_Sw_ON != B777X_LogoLightSwitch)
@@ -236,6 +231,10 @@ void Process777XData(PMDG_777X_Data *pS)
 			printf("LOGO LIGHTS: [ON]\n");
 		else
 			printf("LOGO LIGHTS: [OFF]\n");
+
+
+		//send packets
+		sendDataBool("LTS_Logo_Sw_ON", B777X_LogoLightSwitch);
 	}
 }
 
