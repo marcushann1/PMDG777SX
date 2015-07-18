@@ -1,0 +1,8 @@
+C:\Users\marcushann\Source\Repos\PMDG777SX\PMDG777SX-CONTROL\bin\Debug\PMDG777SX-CONTROL.exe.config
+C:\Users\marcushann\Source\Repos\PMDG777SX\PMDG777SX-CONTROL\bin\Debug\PMDG777SX-CONTROL.exe
+C:\Users\marcushann\Source\Repos\PMDG777SX\PMDG777SX-CONTROL\bin\Debug\PMDG777SX-CONTROL.pdb
+C:\Users\marcushann\Source\Repos\PMDG777SX\PMDG777SX-CONTROL\obj\Debug\PMDG777SX-CONTROL.csprojResolveAssemblyReference.cache
+C:\Users\marcushann\Source\Repos\PMDG777SX\PMDG777SX-CONTROL\obj\Debug\PMDG777SX_CONTROL.Properties.Resources.resources
+C:\Users\marcushann\Source\Repos\PMDG777SX\PMDG777SX-CONTROL\obj\Debug\PMDG777SX-CONTROL.csproj.GenerateResource.Cache
+C:\Users\marcushann\Source\Repos\PMDG777SX\PMDG777SX-CONTROL\obj\Debug\PMDG777SX-CONTROL.exe
+C:\Users\marcushann\Source\Repos\PMDG777SX\PMDG777SX-CONTROL\obj\Debug\PMDG777SX-CONTROL.pdb

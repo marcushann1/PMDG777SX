@@ -97,6 +97,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		//parse data and send change to P3D
 	}
 
+	Sleep(100000);
+
 	return 0;
 }
 
