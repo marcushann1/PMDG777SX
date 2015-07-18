@@ -56,20 +56,6 @@ inline char* BoolToString(bool b)
 	return b ? "true" : "false";
 }
 
-bool B777X_FuelPumpLAftLight = true;
-bool B777X_TaxiLightSwitch = false;
-bool B777X_LogoLightSwitch = false;
-bool B777X_LandingLightLeftSwitch = false;
-bool B777X_WindowHeatBackupSwitch1 = false;
-bool B777X_WindowHeatBackupSwitch2 = false;
-unsigned char B777X_ElecStandbyPowerSwitch = false;
-bool B777X_WingHydraulicValveSwitch1 = false;
-bool B777X_WingHydraulicValveSwitch2 = false;
-bool B777X_WingHydraulicValveSwitch3 = false;
-bool B777X_TailHydraulicValveSwitch1 = false;
-bool B777X_TailHydraulicValveSwitch2 = false;
-bool B777X_TailHydraulicValveSwitch3 = false;
-
 void sendDataBool(char* name, bool value) {
 	char result[100];   // array to hold the result.
 
@@ -100,9 +86,63 @@ void sendDataChar(char* name, unsigned char value){
 	printf("sent packet\n");
 }
 
+bool B777X_FuelPumpLAftLight = true;
+bool B777X_TaxiLightSwitch = false;
+bool B777X_LogoLightSwitch = false;
+bool B777X_LandingLightLeftSwitch = false;
+bool B777X_WindowHeatBackupSwitch1 = false;
+bool B777X_WindowHeatBackupSwitch2 = false;
+unsigned char B777X_ElecStandbyPowerSwitch = false;
+bool B777X_WingHydraulicValveSwitch1 = false;
+bool B777X_WingHydraulicValveSwitch2 = false;
+bool B777X_WingHydraulicValveSwitch3 = false;
+bool B777X_TailHydraulicValveSwitch1 = false;
+bool B777X_TailHydraulicValveSwitch2 = false;
+bool B777X_TailHydraulicValveSwitch3 = false;
+bool B777X_ApuPowerTestSwitch = false;
+bool B777X_EngineEECPowerTestSwitch1 = false;
+bool B777X_EngineEECPowerTestSwitch2 = false;
+
 // This function is called when 777X data changes
+//TODO: come up with a better way of doing this
 void Process777XData(PMDG_777X_Data *pS)
 {
+	if (pS->ENG_EECPower_Sw_TEST[1] != B777X_EngineEECPowerTestSwitch2)
+	{
+		B777X_EngineEECPowerTestSwitch2 = pS->ENG_EECPower_Sw_TEST[1];
+		if (B777X_EngineEECPowerTestSwitch2 == 0)
+			printf("Engine EEC Power Test Switch 2: [OFF]\n");
+		else
+			printf("Engine EEC Power Test Switch 2: [ON]\n");
+
+		//send packets
+		sendDataBool("ENG_EECPower_Sw_TEST2", B777X_EngineEECPowerTestSwitch2);
+	}
+
+	if (pS->ENG_EECPower_Sw_TEST[0] != B777X_EngineEECPowerTestSwitch1)
+	{
+		B777X_EngineEECPowerTestSwitch1 = pS->ENG_EECPower_Sw_TEST[0];
+		if (B777X_EngineEECPowerTestSwitch1 == 0)
+			printf("Engine EEC Power Test Switch 1: [OFF]\n");
+		else
+			printf("Engine EEC Power Test Switch 1: [ON]\n");
+
+		//send packets
+		sendDataBool("ENG_EECPower_Sw_TEST1", B777X_EngineEECPowerTestSwitch1);
+	}
+
+	if (pS->APU_Power_Sw_TEST != B777X_ApuPowerTestSwitch)
+	{
+		B777X_ApuPowerTestSwitch = pS->APU_Power_Sw_TEST;
+		if (B777X_ApuPowerTestSwitch == 0)
+			printf("APU POWER TEST SWITCH: [OFF]\n");
+		else
+			printf("APU POWER TEST SWITCH: [ON]\n");
+
+		//send packets
+		sendDataBool("APU_Power_Sw_TEST", B777X_ApuPowerTestSwitch);
+	}
+
 	if (pS->FCTL_TailHydValve_Sw_SHUT_OFF[1] != B777X_TailHydraulicValveSwitch3)
 	{
 		B777X_TailHydraulicValveSwitch3 = pS->FCTL_TailHydValve_Sw_SHUT_OFF[1];
