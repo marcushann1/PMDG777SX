@@ -102,11 +102,57 @@ bool B777X_TailHydraulicValveSwitch3 = false;
 bool B777X_ApuPowerTestSwitch = false;
 bool B777X_EngineEECPowerTestSwitch1 = false;
 bool B777X_EngineEECPowerTestSwitch2 = false;
+bool B777X_ElectricTowingBatSwitch = false;
+unsigned char B777X_CargoTempSelector1 = false;
+unsigned char B777X_CargoTempSelector2 = false;
 
 // This function is called when 777X data changes
-//TODO: come up with a better way of doing this
+// TODO: come up with a better and more elegant way of doing this
 void Process777XData(PMDG_777X_Data *pS)
 {
+	//----------------------
+	//Overhead maintenance panel
+	//----------------------
+	if (pS->AIR_CargoTemp_Selector[1] != B777X_CargoTempSelector2)
+	{
+		B777X_CargoTempSelector2 = pS->AIR_CargoTemp_Selector[1];
+		if (B777X_CargoTempSelector2 == 0)
+			printf("Cargo Temp Selector Aft: [OFF]\n");
+		else if(B777X_CargoTempSelector2 == 1)
+			printf("Cargo Temp Selector Aft: [LOW]\n");
+		else
+			printf("Cargo Temp Selector Aft: [HIGH]\n");
+
+		//send packets
+		sendDataChar("AIR_CargoTemp_Selector2", B777X_CargoTempSelector1);
+	}
+
+	if (pS->AIR_CargoTemp_Selector[0] != B777X_CargoTempSelector1)
+	{
+		B777X_CargoTempSelector1 = pS->AIR_CargoTemp_Selector[0];
+		if (B777X_CargoTempSelector1 == 0)
+			printf("Cargo Temp Selector Aft: [OFF]\n");
+		else if(B777X_CargoTempSelector1 == 1)
+			printf("Cargo Temp Selector Aft: [LOW]\n");
+		else
+			printf("Cargo Temp Selector Aft: [HIGH]\n");
+
+		//send packets
+		sendDataChar("AIR_CargoTemp_Selector1", B777X_CargoTempSelector1);
+	}
+
+	if (pS->ELEC_TowingPower_Sw_BATT != B777X_ElectricTowingBatSwitch)
+	{
+		B777X_ElectricTowingBatSwitch = pS->ELEC_TowingPower_Sw_BATT;
+		if (B777X_ElectricTowingBatSwitch == 0)
+			printf("Electric Towing Bat Switch: [OFF]\n");
+		else
+			printf("Electric Towing Bat Switch: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_TowingPower_Sw_BATT", B777X_ElectricTowingBatSwitch);
+	}
+
 	if (pS->ENG_EECPower_Sw_TEST[1] != B777X_EngineEECPowerTestSwitch2)
 	{
 		B777X_EngineEECPowerTestSwitch2 = pS->ENG_EECPower_Sw_TEST[1];
