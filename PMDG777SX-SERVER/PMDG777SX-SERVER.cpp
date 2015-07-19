@@ -90,6 +90,7 @@ void sendDataChar(char* name, unsigned char value){
 	printf("sent packet with data: %s \n", result);
 }
 
+// TODO: move to different file to keep the main file tidy?
 bool B777X_FuelPumpLAftLight = true;
 bool B777X_TaxiLightSwitch = false;
 bool B777X_LogoLightSwitch = false;
@@ -109,11 +110,51 @@ bool B777X_EngineEECPowerTestSwitch2 = false;
 bool B777X_ElectricTowingBatSwitch = false;
 unsigned char B777X_CargoTempSelector1 = false;
 unsigned char B777X_CargoTempSelector2 = false;
+bool B777X_ADIRUSwitch = false;
+bool B777X_ThrustAsymComp = false;
+bool B777X_CabinUtilitySwitch = false;
+
 
 // This function is called when 777X data changes
 // TODO: come up with a better and more elegant way of doing this
 void Process777XData(PMDG_777X_Data *pS)
 {
+	if (pS->ELEC_CabUtilSw != B777X_CabinUtilitySwitch)
+	{
+		B777X_CabinUtilitySwitch = pS->ELEC_CabUtilSw;
+		if (B777X_CabinUtilitySwitch == 0)
+			printf("Cabin Utility Switch: [OFF]\n");
+		else
+			printf("Cabin Utility Switch: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_CabUtilSw", B777X_CabinUtilitySwitch);
+	}
+
+	if (pS->FCTL_ThrustAsymComp_Sw_AUTO != B777X_ThrustAsymComp)
+	{
+		B777X_ThrustAsymComp = pS->FCTL_ThrustAsymComp_Sw_AUTO;
+		if (B777X_ThrustAsymComp == 0)
+			printf("Thrust Asym Comp Switch: [OFF]\n");
+		else
+			printf("Thrust Asym Comp Switch: [ON]\n");
+
+		//send packets
+		sendDataBool("FCTL_ThrustAsymComp_Sw_AUTO", B777X_ThrustAsymComp);
+	}
+
+	if (pS->ADIRU_Sw_On != B777X_ADIRUSwitch)
+	{
+		B777X_ADIRUSwitch = pS->ADIRU_Sw_On;
+		if (B777X_ADIRUSwitch == 0)
+			printf("ADIRU Switch: [OFF]\n");
+		else
+			printf("ADIRU Switch: [ON]\n");
+
+		//send packets
+		sendDataBool("ADIRU_Sw_On", B777X_ADIRUSwitch);
+	}
+
 	//----------------------
 	//Overhead maintenance panel
 	//----------------------
