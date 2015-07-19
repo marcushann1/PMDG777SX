@@ -113,12 +113,66 @@ unsigned char B777X_CargoTempSelector2 = false;
 bool B777X_ADIRUSwitch = false;
 bool B777X_ThrustAsymComp = false;
 bool B777X_CabinUtilitySwitch = false;
+bool B777X_IFEPassSeatsSwitch = false;
+bool B777X_BatterySwitch = false;
+bool B777X_APUGenSwitch = false;
+unsigned char B777X_ApuSelector = false;
 
 
 // This function is called when 777X data changes
 // TODO: come up with a better and more elegant way of doing this
 void Process777XData(PMDG_777X_Data *pS)
 {
+	if (pS->ELEC_APU_Selector != B777X_ApuSelector)
+	{
+		B777X_ApuSelector = pS->ELEC_APU_Selector;
+		if (B777X_ApuSelector == 0)
+			printf("APU Selector: [OFF]\n");
+		else if(B777X_ApuSelector == 1)
+			printf("APU Selector: [ON]\n");
+		else
+			printf("APU Selector: [START]\n");
+
+		//send packets
+		sendDataChar("ELEC_APU_Selector", B777X_ApuSelector);
+	}
+
+	if (pS->ELEC_APUGen_Sw_ON != B777X_APUGenSwitch)
+	{
+		B777X_APUGenSwitch = pS->ELEC_APUGen_Sw_ON;
+		if (B777X_APUGenSwitch == 0)
+			printf("APU Gen Switch: [OFF]\n");
+		else
+			printf("APU Gen Switch: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_APUGen_Sw_ON", B777X_APUGenSwitch);
+	}
+
+	if (pS->ELEC_Battery_Sw_ON != B777X_BatterySwitch)
+	{
+		B777X_BatterySwitch = pS->ELEC_Battery_Sw_ON;
+		if (B777X_BatterySwitch == 0)
+			printf("Battery Switch: [OFF]\n");
+		else
+			printf("Battery Switch: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_Battery_Sw_ON", B777X_BatterySwitch);
+	}
+
+	if (pS->ELEC_IFEPassSeatsSw != B777X_IFEPassSeatsSwitch)
+	{
+		B777X_IFEPassSeatsSwitch = pS->ELEC_IFEPassSeatsSw;
+		if (B777X_IFEPassSeatsSwitch == 0)
+			printf("IFE Seats Switch: [OFF]\n");
+		else
+			printf("IFE Seats Switch: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_IFEPassSeatsSw", B777X_IFEPassSeatsSwitch);
+	}
+
 	if (pS->ELEC_CabUtilSw != B777X_CabinUtilitySwitch)
 	{
 		B777X_CabinUtilitySwitch = pS->ELEC_CabUtilSw;
