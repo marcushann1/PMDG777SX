@@ -117,12 +117,141 @@ bool B777X_IFEPassSeatsSwitch = false;
 bool B777X_BatterySwitch = false;
 bool B777X_APUGenSwitch = false;
 unsigned char B777X_ApuSelector = false;
-
+bool B777X_BusTieSwitch1 = false;
+bool B777X_BusTieSwitch2 = false;
+bool B777X_ExternalPowerSwitch1 = false;
+bool B777X_ExternalPowerSwitch2 = false;
+bool B777X_GeneratorSwitch1 = false;
+bool B777X_GeneratorSwitch2 = false;
+bool B777X_BackupGeneratorSwitch1 = false;
+bool B777X_BackupGeneratorSwitch2 = false;
+bool B777X_IGDDiskSwitch1 = false;
+bool B777X_IGDDiskSwitch2 = false;
 
 // This function is called when 777X data changes
 // TODO: come up with a better and more elegant way of doing this
 void Process777XData(PMDG_777X_Data *pS)
 {
+	if (pS->ELEC_IDGDiscSw[1] != B777X_BackupGeneratorSwitch2)
+	{
+		B777X_BackupGeneratorSwitch2 = pS->ELEC_IDGDiscSw[1];
+		if (B777X_BackupGeneratorSwitch2 == 0)
+			printf("ELEC_IDGDiscSw2: [OFF]\n");
+		else
+			printf("ELEC_IDGDiscSw2: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_IDGDiscSw2", B777X_BackupGeneratorSwitch2);
+	}
+
+	if (pS->ELEC_IDGDiscSw[0] != B777X_IGDDiskSwitch1)
+	{
+		B777X_IGDDiskSwitch1 = pS->ELEC_IDGDiscSw[0];
+		if (B777X_IGDDiskSwitch1 == 0)
+			printf("ELEC_IDGDiscSw1: [OFF]\n");
+		else
+			printf("ELEC_IDGDiscSw1: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_IDGDiscSw1", B777X_IGDDiskSwitch1);
+	}
+
+	if (pS->ELEC_BackupGen_Sw_ON[1] != B777X_BackupGeneratorSwitch2)
+	{
+		B777X_BackupGeneratorSwitch2 = pS->ELEC_BackupGen_Sw_ON[1];
+		if (B777X_BackupGeneratorSwitch2 == 0)
+			printf("ELEC_BusTie_Sw_AUTO2: [OFF]\n");
+		else
+			printf("ELEC_BusTie_Sw_AUTO2: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_BackupGen_Sw_ON2", B777X_BackupGeneratorSwitch2);
+	}
+
+	if (pS->ELEC_BackupGen_Sw_ON[0] != B777X_BackupGeneratorSwitch1)
+	{
+		B777X_BackupGeneratorSwitch1 = pS->ELEC_BackupGen_Sw_ON[0];
+		if (B777X_BackupGeneratorSwitch1 == 0)
+			printf("ELEC_BusTie_Sw_AUTO: [OFF]\n");
+		else
+			printf("ELEC_BusTie_Sw_AUTO: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_BackupGen_Sw_ON1", B777X_BackupGeneratorSwitch1);
+	}
+
+	if (pS->ELEC_Gen_Sw_ON[1] != B777X_GeneratorSwitch2)
+	{
+		B777X_GeneratorSwitch2 = pS->ELEC_Gen_Sw_ON[1];
+		if (B777X_GeneratorSwitch2 == 0)
+			printf("ELEC_BusTie_Sw_AUTO2: [OFF]\n");
+		else
+			printf("ELEC_BusTie_Sw_AUTO2: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_Gen_Sw_ON2", B777X_GeneratorSwitch2);
+	}
+
+	if (pS->ELEC_Gen_Sw_ON[0] != B777X_GeneratorSwitch1)
+	{
+		B777X_GeneratorSwitch1 = pS->ELEC_Gen_Sw_ON[0];
+		if (B777X_GeneratorSwitch1 == 0)
+			printf("ELEC_BusTie_Sw_AUTO: [OFF]\n");
+		else
+			printf("ELEC_BusTie_Sw_AUTO: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_Gen_Sw_ON1", B777X_GeneratorSwitch1);
+	}
+
+	if (pS->ELEC_ExtPwrSw[1] != B777X_ExternalPowerSwitch2)
+	{
+		B777X_ExternalPowerSwitch2 = pS->ELEC_ExtPwrSw[1];
+		if (B777X_ExternalPowerSwitch2 == 0)
+			printf("ELEC_BusTie_Sw_AUTO2: [OFF]\n");
+		else
+			printf("ELEC_BusTie_Sw_AUTO2: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_ExtPwrSw2", B777X_ExternalPowerSwitch2);
+	}
+
+	if (pS->ELEC_ExtPwrSw[0] != B777X_ExternalPowerSwitch1)
+	{
+		B777X_ExternalPowerSwitch1 = pS->ELEC_ExtPwrSw[0];
+		if (B777X_ExternalPowerSwitch1 == 0)
+			printf("ELEC_BusTie_Sw_AUTO: [OFF]\n");
+		else
+			printf("ELEC_BusTie_Sw_AUTO: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_ExtPwrSw1", B777X_ExternalPowerSwitch1);
+	}
+
+	if (pS->ELEC_BusTie_Sw_AUTO[1] != B777X_BusTieSwitch2)
+	{
+		B777X_BusTieSwitch2 = pS->ELEC_BusTie_Sw_AUTO[1];
+		if (B777X_BusTieSwitch2 == 0)
+			printf("ELEC_BusTie_Sw_AUTO2: [OFF]\n");
+		else
+			printf("ELEC_BusTie_Sw_AUTO2: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_BusTie_Sw_AUTO2", B777X_BusTieSwitch2);
+	}
+
+	if (pS->ELEC_BusTie_Sw_AUTO[0] != B777X_BusTieSwitch1)
+	{
+		B777X_BusTieSwitch1 = pS->ELEC_BusTie_Sw_AUTO[0];
+		if (B777X_BusTieSwitch1 == 0)
+			printf("ELEC_BusTie_Sw_AUTO: [OFF]\n");
+		else
+			printf("ELEC_BusTie_Sw_AUTO: [ON]\n");
+
+		//send packets
+		sendDataBool("ELEC_BusTie_Sw_AUTO", B777X_BusTieSwitch1);
+	}
+
 	if (pS->ELEC_APU_Selector != B777X_ApuSelector)
 	{
 		B777X_ApuSelector = pS->ELEC_APU_Selector;
