@@ -12,6 +12,7 @@
 #include "stdafx.h"
 #include <windows.h>
 #include <string.h>
+#include <map>
 
 #define SERVERPORT "4950"	// the port users will be connecting to
 #define MAXBUFLEN 100
@@ -128,11 +129,50 @@ bool B777X_BackupGeneratorSwitch2 = false;
 bool B777X_IGDDiskSwitch1 = false;
 bool B777X_IGDDiskSwitch2 = false;
 
+std::map<std::string, char*> PlaneParameters = { 
+	{ "B777X_FuelPumpLAftLight", "false" },
+	{ "B777X_TaxiLightSwitch", "false" },
+	{ "LogoLightSwitch", "false" },
+	{ "LandingLightLeftSwitch", "false" },
+	{ "WindowHeatBackupSwitch1", "false" },
+	{ "WindowHeatBackupSwitch2", "false" },
+	{ "B777X_ElecStandbyPowerSwitch", "false" },
+	{ "WingHydraulicValveSwitch1", "false" },
+	{ "WingHydraulicValveSwitch2", "false" },
+	{ "WingHydraulicValveSwitch3", "false" },
+	{ "TailHydraulicValveSwitch1", "false" },
+	{ "TailHydraulicValveSwitch2", "false" },
+	{ "TailHydraulicValveSwitch3", "false" },
+	{ "ApuPowerTestSwitch", "false" },
+	{ "EngineEECPowerTestSwitch1", "false" },
+	{ "EngineEECPowerTestSwitch2", "false" },
+	{ "ElectricTowingBatSwitch", "false" },
+	{ "B777X_CargoTempSelector1", "false" },
+	{ "B777X_CargoTempSelector2", "false" },
+	{ "ADIRUSwitch", "false" },
+	{ "ThrustAsymComp", "false" },
+	{ "CabinUtilitySwitch", "false" },
+	{ "IFEPassSeatsSwitch", "false" },
+	{ "BatterySwitch", "false" },
+	{ "APUGenSwitch", "false" },
+	{ "B777X_ApuSelector", "false" },
+	{ "BusTieSwitch1", "false" },
+	{ "BusTieSwitch2", "false" },
+	{ "ExternalPowerSwitch1", "false" },
+	{ "ExternalPowerSwitch2", "false" },
+	{ "GeneratorSwitch1", "false" },
+	{ "GeneratorSwitch2", "false" },
+	{ "BackupGeneratorSwitch1", "false" },
+	{ "BackupGeneratorSwitch2", "false" },
+	{ "IGDDiskSwitch1", "false" },
+	{ "IGDDiskSwitch2", "false" }
+};
+
 // This function is called when 777X data changes
 // TODO: come up with a better and more elegant way of doing this
 void Process777XData(PMDG_777X_Data *pS)
 {
-	if (pS->ELEC_IDGDiscSw[1] != B777X_BackupGeneratorSwitch2)
+	/*if (pS->ELEC_IDGDiscSw[1] != B777X_BackupGeneratorSwitch2)
 	{
 		B777X_BackupGeneratorSwitch2 = pS->ELEC_IDGDiscSw[1];
 		if (B777X_BackupGeneratorSwitch2 == 0)
@@ -142,18 +182,18 @@ void Process777XData(PMDG_777X_Data *pS)
 
 		//send packets
 		sendDataBool("ELEC_IDGDiscSw2", B777X_BackupGeneratorSwitch2);
-	}
+	}*/
 
-	if (pS->ELEC_IDGDiscSw[0] != B777X_IGDDiskSwitch1)
+	if (BoolToString(pS->ELEC_IDGDiscSw[0]) != PlaneParameters["B777X_IGDDiskSwitch1"])
 	{
-		B777X_IGDDiskSwitch1 = pS->ELEC_IDGDiscSw[0];
-		if (B777X_IGDDiskSwitch1 == 0)
+		PlaneParameters["B777X_IGDDiskSwitch1"] = BoolToString(pS->ELEC_IDGDiscSw[0]);
+		if (PlaneParameters["B777X_IGDDiskSwitch1"] == 0)
 			printf("ELEC_IDGDiscSw1: [OFF]\n");
 		else
 			printf("ELEC_IDGDiscSw1: [ON]\n");
 
 		//send packets
-		sendDataBool("ELEC_IDGDiscSw1", B777X_IGDDiskSwitch1);
+		sendDataBool("ELEC_IDGDiscSw1", PlaneParameters["B777X_IGDDiskSwitch1"]);
 	}
 
 	if (pS->ELEC_BackupGen_Sw_ON[1] != B777X_BackupGeneratorSwitch2)
