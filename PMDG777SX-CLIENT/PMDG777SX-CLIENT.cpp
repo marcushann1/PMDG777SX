@@ -86,6 +86,10 @@ std::map<std::string, char*> PlaneParameters = {
 	{ "IGDDiskSwitch2", "false" }
 };
 
+*char[2] splitByColon(char* input){
+
+}
+
 // get sockaddr, IPv4 or IPv6:
 void *get_in_addr(struct sockaddr *sa)
 {
