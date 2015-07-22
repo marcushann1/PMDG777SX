@@ -86,6 +86,10 @@ std::map<std::string, char*> PlaneParameters = {
 	{ "IGDDiskSwitch2", "false" }
 };
 
+inline bool stringToBool(char* input){
+	return (input == "true") ? true : false;
+}
+
 char[2][50] splitByColon(char* input){
 	//define variables for keeping track of where we are in loop
 	bool afterColon = false;
@@ -335,6 +339,20 @@ int _tmain(int argc, _TCHAR* argv[])
 		// Test the first control method: use the control data area.
 		if (AircraftRunning)
 		{
+			//setup variables
+			char data[2][50] = splitByColon(buf);
+			bool isBool = false;
+			bool isChar = false;
+			bool boolValue = false;
+			char charValue = false;
+
+			switch(data[1]){
+				case "LTS_Logo_Sw_ON":
+					isBool = true;
+					boolValue = stringToBool(data[2]);
+
+			}
+
 			bool New_TaxiLightSwitch = (buf == "LTS_Logo_Sw_ON: false") ? true : false;
 			
 
