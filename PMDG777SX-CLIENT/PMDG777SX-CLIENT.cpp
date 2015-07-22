@@ -86,8 +86,30 @@ std::map<std::string, char*> PlaneParameters = {
 	{ "IGDDiskSwitch2", "false" }
 };
 
-*char[2] splitByColon(char* input){
+char[2][50] splitByColon(char* input){
+	//define variables for keeping track of where we are in loop
+	bool afterColon = false;
+	char output[2][50];
+	int arrayPlace = 0;
 
+
+	//loop through each character in the array
+	for(const char &element : input ){
+		if(afterColon == false && element != ':' && element != ' '){
+			output[1][arrayPlace] = element;
+			arrayPlace++; 
+		}else if(element == ':'){
+			output[1][arrayPlace] = '\0';
+			arrayPlace = 0;
+			afterColon = true;
+		}else if(element != ' '){
+			output[2][arrayPlace] = element;
+			arrayPlace++;
+		}
+	}
+
+	//return resulting two strings
+	return output;
 }
 
 // get sockaddr, IPv4 or IPv6:
