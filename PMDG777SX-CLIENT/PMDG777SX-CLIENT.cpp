@@ -13,6 +13,9 @@
 #include <windows.h>
 #include <string.h>
 #include <map>
+#include <vector>
+#include <algorithm>
+#include <iterator>
 
 #define MYPORT "4950" // the port users will be connecting to
 #define MAXBUFLEN 100
@@ -86,31 +89,99 @@ std::map<std::string, char*> PlaneParameters = {
 	{ "IGDDiskSwitch2", "false" }
 };
 
-inline bool stringToBool(char* input){
+//template<class InputIterator> string(InputIterator begin, InputIterator end);
+
+const char *convert(const std::string & s)
+{
+	return s.c_str();
+}
+
+inline bool stringToBool(std::string input){
 	return (input == "true") ? true : false;
 }
 
-char[2][50] splitByColon(char* input){
+inline const char* splitByColonName(char* input) {
 	//define variables for keeping track of where we are in loop
 	bool afterColon = false;
-	char output[2][50];
+	std::vector<std::vector<char>> output(2);
 	int arrayPlace = 0;
-
+	printf("splitting\n");
+	char name[50];
+	char value[10];
+	char* nullTerminated = input + 0x00;
 
 	//loop through each character in the array
-	for(const char &element : input ){
-		if(afterColon == false && element != ':' && element != ' '){
-			output[1][arrayPlace] = element;
-			arrayPlace++; 
-		}else if(element == ':'){
-			output[1][arrayPlace] = '\0';
+	for (char* it = nullTerminated; *it; ++it) {
+		//printf("%c", *it);
+
+		if (afterColon == false && *it != ':' && *it != ' ') {
+			printf("name\n");
+			name[arrayPlace] = *it;
+			printf("current array: ");
+			printf(name);
+			printf("\n");
+			arrayPlace++;
+		}
+		else if (*it == ':') {
+			printf("colon\n");
+			name[arrayPlace] = 0x00;
 			arrayPlace = 0;
 			afterColon = true;
-		}else if(element != ' '){
-			output[2][arrayPlace] = element;
+		}
+	}
+
+	printf("final array: ");
+	printf(name);
+	printf("\n");
+
+	return name;
+}
+
+//TODO :cl
+std::vector<std::vector<char>> splitByColon(char* input){
+	//define variables for keeping track of where we are in loop
+	bool afterColon = false;
+	std::vector<std::vector<char>> output(2);
+	int arrayPlace = 0;
+	printf("splitting\n");
+	char name[50];
+	char value[10];
+	char* nullTerminated = input + 0x00;
+
+	//loop through each character in the array
+	for (char* it = nullTerminated; *it; ++it){
+		//printf("%c", *it);
+
+		if(afterColon == false && *it != ':' && *it != ' '){
+			printf("name\n");
+			name[arrayPlace] = *it;
+			printf("current array: ");
+			printf(name);
+			printf("\n");
+			arrayPlace++; 
+		}else if(*it == ':'){
+			printf("colon\n");
+			name[arrayPlace] = 0x00;
+			arrayPlace = 0;
+			afterColon = true;
+		}else if(*it != ' '){
+			printf("value\n");
+			value[arrayPlace] = *it;
 			arrayPlace++;
 		}
 	}
+	//output[2][arrayPlace] = '\0';
+	printf("finished splitting\n");
+
+	unsigned dataArraySize = sizeof(name) / sizeof(name[0]);
+
+	printf("set data array size\n");
+	output[0] = std::vector<char>();
+	printf("initialised first element of array");
+
+	output[0].insert(output[0].end(), &name[0], &name[dataArraySize]);
+
+	printf("set output\n");
 
 	//return resulting two strings
 	return output;
@@ -339,18 +410,25 @@ int _tmain(int argc, _TCHAR* argv[])
 		// Test the first control method: use the control data area.
 		if (AircraftRunning)
 		{
+			printf("testing splitting function: %s \n", splitByColonName(buf));
+
 			//setup variables
-			char data[2][50] = splitByColon(buf);
+			//std::vector<std::vector<char>> data = splitByColon(buf);
 			bool isBool = false;
 			bool isChar = false;
 			bool boolValue = false;
 			char charValue = false;
+			const char* name = "";
+			printf("recieved name: ");
+			printf(name);
+			printf("%d", name[0]);
+			printf("\n");
 
-			switch(data[1]){
-				case "LTS_Logo_Sw_ON":
-					isBool = true;
-					boolValue = stringToBool(data[2]);
-
+			if(name == "LTS_Logo_Sw_ON"){
+				printf("Logo Lights Switch");
+				isBool = true;
+				boolValue = stringToBool(name);
+				break;
 			}
 
 			bool New_TaxiLightSwitch = (buf == "LTS_Logo_Sw_ON: false") ? true : false;
