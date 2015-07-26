@@ -16,6 +16,10 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include <sstream>
+#include <iostream>
+#include <ctime>
+
 
 #define MYPORT "4950" // the port users will be connecting to
 #define MAXBUFLEN 100
@@ -91,6 +95,22 @@ std::map<std::string, char*> PlaneParameters = {
 
 //template<class InputIterator> string(InputIterator begin, InputIterator end);
 
+enum LOG_TYPE{
+	LOG_INFO,
+	LOG_WARNING,
+	LOG_ERROR
+};
+
+void log(LOG_TYPE type, std::string message){
+	time_t currentTime = time(0);
+	struct tm * now = localtime(&currentTime);
+}
+
+inline char* BoolToString(bool b)
+{
+	return b ? "true" : "false";
+}
+
 const char *convert(const std::string & s)
 {
 	return s.c_str();
@@ -138,7 +158,7 @@ inline const char* splitByColonName(char* input) {
 }
 
 //TODO :cl
-std::vector<std::vector<char>> splitByColon(char* input){
+std::string splitByColonname(char* input){
 	//define variables for keeping track of where we are in loop
 	bool afterColon = false;
 	std::vector<std::vector<char>> output(2);
@@ -147,44 +167,90 @@ std::vector<std::vector<char>> splitByColon(char* input){
 	char name[50];
 	char value[10];
 	char* nullTerminated = input + 0x00;
+	std::vector<std::string, std::string> finalReturn;
+	std::string nameReturn;
+	std::string valueReturn;
 
 	//loop through each character in the array
 	for (char* it = nullTerminated; *it; ++it){
 		//printf("%c", *it);
 
-		if(afterColon == false && *it != ':' && *it != ' '){
-			printf("name\n");
+		if (afterColon == false && *it != ':' && *it != ' '){
 			name[arrayPlace] = *it;
-			printf("current array: ");
-			printf(name);
-			printf("\n");
-			arrayPlace++; 
-		}else if(*it == ':'){
-			printf("colon\n");
+			arrayPlace++;
+		}
+		else if (*it == ':'){
 			name[arrayPlace] = 0x00;
 			arrayPlace = 0;
 			afterColon = true;
-		}else if(*it != ' '){
-			printf("value\n");
+		}
+		else if (*it != ' '){
 			value[arrayPlace] = *it;
 			arrayPlace++;
 		}
 	}
-	//output[2][arrayPlace] = '\0';
-	printf("finished splitting\n");
 
-	unsigned dataArraySize = sizeof(name) / sizeof(name[0]);
+	
 
-	printf("set data array size\n");
-	output[0] = std::vector<char>();
-	printf("initialised first element of array");
+	nameReturn = std::string(name);
+	valueReturn = std::string(value);
 
-	output[0].insert(output[0].end(), &name[0], &name[dataArraySize]);
+	std::cout << "Testing name return: " << nameReturn << "\n";
 
-	printf("set output\n");
+	//.insert(std::make_pair(nameReturn, valueReturn));
+
+	//printf("name: %s, value: %s", nameReturn, valueReturn);
 
 	//return resulting two strings
-	return output;
+	return nameReturn;
+}
+
+std::string splitByColonvalue(char* input){
+	//define variables for keeping track of where we are in loop
+	bool afterColon = false;
+	std::vector<std::vector<char>> output(2);
+	int arrayPlace = 0;
+	printf("splitting\n");
+	char name[50];
+	char value[10];
+	char* nullTerminated = input + 0x00;
+	std::vector<std::string, std::string> finalReturn;
+	std::string nameReturn;
+	std::string valueReturn;
+
+	//loop through each character in the array
+	for (char* it = nullTerminated; *it; ++it){
+		//printf("%c", *it);
+
+		if (afterColon == false && *it != ':' && *it != ' '){
+			arrayPlace++;
+		}
+		else if (*it == ':'){
+			printf("colon\n");
+			name[arrayPlace] = 0x00;
+			arrayPlace = 0;
+			afterColon = true;
+		}
+		else if (*it != ' ' && afterColon == true){
+			value[arrayPlace] = *it;
+			arrayPlace++;
+		}
+	}
+	value[arrayPlace] = 0x00;
+
+
+
+	nameReturn = std::string(name);
+	valueReturn = std::string(value);
+
+	std::cout << "Testing value return: " << valueReturn << "\n";
+
+	//.insert(std::make_pair(nameReturn, valueReturn));
+
+	//printf("name: %s, value: %s", nameReturn, valueReturn);
+
+	//return resulting two strings
+	return valueReturn;
 }
 
 // get sockaddr, IPv4 or IPv6:
@@ -360,7 +426,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	socklen_t addr_len;
 	char s[INET6_ADDRSTRLEN];
 	memset(&hints, 0, sizeof hints);
-	hints.ai_family = AF_UNSPEC; // set to AF_INET to force IPv4
+	hints.ai_family = AF_INET; // set to AF_INET to force IPv4
 	hints.ai_socktype = SOCK_DGRAM;
 	hints.ai_flags = AI_PASSIVE; // use my IP
 	if ((rv = getaddrinfo(NULL, MYPORT, &hints, &servinfo)) != 0) {
@@ -410,7 +476,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		// Test the first control method: use the control data area.
 		if (AircraftRunning)
 		{
-			printf("testing splitting function: %s \n", splitByColonName(buf));
+			std::cout << "testing splitting function:" << splitByColonname(buf) << "\n";
 
 			//setup variables
 			//std::vector<std::vector<char>> data = splitByColon(buf);
@@ -418,35 +484,39 @@ int _tmain(int argc, _TCHAR* argv[])
 			bool isChar = false;
 			bool boolValue = false;
 			char charValue = false;
-			const char* name = "";
-			printf("recieved name: ");
-			printf(name);
-			printf("%d", name[0]);
-			printf("\n");
+			std::string name = splitByColonname(buf);
+			std::cout << "recieved name: " << name << "\n";
+			//if (Control.Event == 0)
+			//{
+				if(name == "LTS_Logo_Sw_ON"){
+					printf("Logo Lights Switch\n");
+					//bool New_TaxiLightSwitch = (buf == "LTS_Logo_Sw_ON: false") ? true : false;
+					isBool = true;
+					Control.Event = EVT_OH_LIGHTS_LOGO;
+					std::cout << "value: " << splitByColonvalue(buf) << "\n";
+					boolValue = stringToBool(splitByColonvalue(buf));
+					if (boolValue){
+						Control.Parameter = 1;
+					}
+					else{
+						Control.Parameter = 0;
+					}
+					
+				}
+				printf("changing logo lights \n");
 
-			if(name == "LTS_Logo_Sw_ON"){
-				printf("Logo Lights Switch");
-				isBool = true;
-				boolValue = stringToBool(name);
-				break;
-			}
-
-			bool New_TaxiLightSwitch = (buf == "LTS_Logo_Sw_ON: false") ? true : false;
+				
 			
 
-			// Send a command only if there is no active command request and previous command has been processed by the 777X
-			if (Control.Event == 0)
-			{
-				Control.Event = EVT_OH_LIGHTS_LOGO;		// = 69753
-				if (New_TaxiLightSwitch)
-					Control.Parameter = 1;
-				else
-					Control.Parameter = 0;
+				// Send a command only if there is no active command request and previous command has been processed by the 777X
+			
+						// = 69753
+				
 				SimConnect_SetClientData(hSimConnect, PMDG_777X_CONTROL_ID, PMDG_777X_CONTROL_DEFINITION,
 					0, 0, sizeof(PMDG_777X_Control), &Control);
 
 				printf("changed logo lights\n");
-			}
+			//}
 		}
 		else {
 			printf("not running\n");
@@ -458,4 +528,3 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	return 0;
 }
-

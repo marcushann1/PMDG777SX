@@ -1,42 +1,38 @@
-﻿Build started 23/07/2015 19:28:03.
-     1>Project "C:\Users\marcushann\Source\Repos\PMDG777SX\PMDG777SX-CLIENT\PMDG777SX-CLIENT.vcxproj" on node 2 (Build target(s)).
+﻿Build started 26/07/2015 07:17:32 PM.
+     1>Project "F:\Users\Tom\Documents\GitHub\PMDG777SX - Copy\PMDG777SX-CLIENT\PMDG777SX-CLIENT.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"stdafx.h" /Fp"Debug\PMDG777SX-CLIENT.pch" /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt "PMDG777SX-CLIENT.cpp"
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\PMDG777SX-CLIENT.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt "PMDG777SX-CLIENT.cpp"
          PMDG777SX-CLIENT.cpp
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(8): warning C4005: 'WINVER': macro redefinition
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(4): note: see previous definition of 'WINVER'
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(9): warning C4005: '_WIN32_WINNT': macro redefinition
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(6): note: see previous definition of '_WIN32_WINNT'
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(4): warning C4603: 'WINVER': macro is not defined or definition is different after precompiled header use
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(4): note: Add macro to precompiled header instead of defining here
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(12): note: use of precompiled header
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(5): warning C4603: '_WIN32_WINDOWS': macro is not defined or definition is different after precompiled header use
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(5): note: Add macro to precompiled header instead of defining here
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(12): note: use of precompiled header
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(6): warning C4603: '_WIN32_WINNT': macro is not defined or definition is different after precompiled header use
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(6): note: Add macro to precompiled header instead of defining here
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(12): note: use of precompiled header
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(7): warning C4603: 'NTDDI_VERSION': macro is not defined or definition is different after precompiled header use
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(7): note: Add macro to precompiled header instead of defining here
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(12): note: use of precompiled header
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(8): warning C4603: 'WINVER': macro is not defined or definition is different after precompiled header use
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(8): note: Add macro to precompiled header instead of defining here
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(12): note: use of precompiled header
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(9): warning C4603: '_WIN32_WINNT': macro is not defined or definition is different after precompiled header use
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(9): note: Add macro to precompiled header instead of defining here
-         c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(12): note: use of precompiled header
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(32): warning C4091: 'static ': ignored on left of 'DATA_REQUEST_ID' when no variable is declared
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(43): warning C4091: 'static ': ignored on left of 'EVENT_ID' when no variable is declared
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(47): warning C4091: 'static ': ignored on left of 'INPUT_ID' when no variable is declared
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(51): warning C4091: 'static ': ignored on left of 'GROUP_ID' when no variable is declared
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(110): warning C4101: 'value': unreferenced local variable
-     1>c:\users\marcushann\source\repos\pmdg777sx\pmdg777sx-client\pmdg777sx-client.cpp(137): warning C4172: returning address of local variable or temporary: name
+     1>f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(8): warning C4005: 'WINVER' : macro redefinition
+                 f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(4) : see previous definition of 'WINVER'
+     1>f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(9): warning C4005: '_WIN32_WINNT' : macro redefinition
+                 f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(6) : see previous definition of '_WIN32_WINNT'
+     1>f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(4): warning C4603: 'WINVER' : macro is not defined or definition is different after precompiled header use
+                 Add macro to precompiled header instead of defining here
+                 f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(12) : use of precompiled header
+     1>f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(5): warning C4603: '_WIN32_WINDOWS' : macro is not defined or definition is different after precompiled header use
+                 Add macro to precompiled header instead of defining here
+                 f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(12) : use of precompiled header
+     1>f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(6): warning C4603: '_WIN32_WINNT' : macro is not defined or definition is different after precompiled header use
+                 Add macro to precompiled header instead of defining here
+                 f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(12) : use of precompiled header
+     1>f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(7): warning C4603: 'NTDDI_VERSION' : macro is not defined or definition is different after precompiled header use
+                 Add macro to precompiled header instead of defining here
+                 f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(12) : use of precompiled header
+     1>f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(8): warning C4603: 'WINVER' : macro is not defined or definition is different after precompiled header use
+                 Add macro to precompiled header instead of defining here
+                 f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(12) : use of precompiled header
+     1>f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(9): warning C4603: '_WIN32_WINNT' : macro is not defined or definition is different after precompiled header use
+                 Add macro to precompiled header instead of defining here
+                 f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(12) : use of precompiled header
+     1>f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(145): warning C4172: returning address of local variable or temporary
+     1>f:\users\tom\documents\github\pmdg777sx - copy\pmdg777sx-client\pmdg777sx-client.cpp(118): warning C4101: 'value' : unreferenced local variable
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\marcushann\Source\Repos\PMDG777SX\Debug\PMDG777SX-CLIENT.exe" /INCREMENTAL /NOLOGO wsock32.lib Ws2_32.lib SimConnect.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\marcushann\Source\Repos\PMDG777SX\Debug\PMDG777SX-CLIENT.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\marcushann\Source\Repos\PMDG777SX\Debug\PMDG777SX-CLIENT.lib" /MACHINE:X86 "Debug\PMDG777SX-CLIENT.obj"
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Users\Tom\Documents\GitHub\PMDG777SX - Copy\Debug\PMDG777SX-CLIENT.exe" /INCREMENTAL /NOLOGO wsock32.lib Ws2_32.lib SimConnect.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\Users\Tom\Documents\GitHub\PMDG777SX - Copy\Debug\PMDG777SX-CLIENT.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Users\Tom\Documents\GitHub\PMDG777SX - Copy\Debug\PMDG777SX-CLIENT.lib" /MACHINE:X86 "Debug\PMDG777SX-CLIENT.obj"
          Debug\stdafx.obj
-         PMDG777SX-CLIENT.vcxproj -> C:\Users\marcushann\Source\Repos\PMDG777SX\Debug\PMDG777SX-CLIENT.exe
-     1>Done Building Project "C:\Users\marcushann\Source\Repos\PMDG777SX\PMDG777SX-CLIENT\PMDG777SX-CLIENT.vcxproj" (Build target(s)).
+         PMDG777SX-CLIENT.vcxproj -> F:\Users\Tom\Documents\GitHub\PMDG777SX - Copy\Debug\PMDG777SX-CLIENT.exe
+     1>Done Building Project "F:\Users\Tom\Documents\GitHub\PMDG777SX - Copy\PMDG777SX-CLIENT\PMDG777SX-CLIENT.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.06
+Time Elapsed 00:00:01.53
